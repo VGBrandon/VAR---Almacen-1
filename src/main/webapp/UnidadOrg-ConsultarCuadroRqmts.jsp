@@ -10,26 +10,22 @@
 </head>
 <style>
 	.tbodyDiv{
-max-height: clamp(35vh,10vh,250px);
-overflow: auto;
+	max-height: clamp(45vh,10vh,250px);
+	overflow: auto;
 }
 </style>
 <body>
 	<%@ include file="Snippets/Encabezado.jsp" %>
 	<div class="dashboard_content">
 		<%@ include file="Snippets/MenuLateral.jsp" %>
-		<section class="consultaRequ" id="staticBackdrop" data-bs-backdrop="static"
-			data-bs-keyboard="false" tabindex="-1" >
+		<section class="consultaRequ" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" >
 			<center><h3>CONSULTAR CUADRO DE REQUERIMIENTOS</h3></center>
+			<span class="fw-bold fs-5 text-danger">Nombre de Unidad Organica</span>
 			<div class="consultaRequ__block_query">
-				<form id="idConsultar" method="post" action="" class="consultaRequ__criterios" role="form">
+				<form id="idConsultar" method="post" action="" class="consultaRequ__criterios consultaRequ__criterios_unidadOrganica" role="form">
 					<div class="form-group">
 					    <label for="exampleInputEmail1" class="form-label">Destinatario</label>
 					    <input type="text" class="form-control" name="destinatario" id="idDestinatario">
-					</div>
-					<div class="form-group">
-					    <label for="exampleInputEmail1" class="form-label">Responsable</label>
-					    <input type="text" class="form-control" name="responsable" id="idResponsable">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1" class="form-label">Fecha</label>
@@ -47,16 +43,6 @@ overflow: auto;
 					 <div class="form-group">
 					    <label for="exampleInputEmail1" class="form-label">Cantidad</label>
 					    <input type="text" class="form-control" name="cantidad" id="idCantidad">
-					 </div>
-					 <div class="form-group">
-					    <label for="exampleInputPassword1" class="form-label">Unidad Organica</label>
-					   <select class="form-select"  name="unidadorganica" id="idUnidadorganica">
-					   	  <option value="">Seleccione Unidad Organica</option>				   	
-						</select>
-					 </div>
-					 <div class="form-group">
-					    <label for="exampleInputEmail1" class="form-label">Codigo de Bien</label>
-					    <input type="text" class="form-control" name="codigobien" id="idCodigobien">
 					 </div>
 					 <button type="submit" class="btn btn-danger btn__fontSize">Consultar</button>
 				 </form>
@@ -161,29 +147,20 @@ overflow: auto;
 		    	</table>		
 			</div>
 			<div class="consultaRequ__block_info mt-2"><p>XXX Cuadro de Requerimiento encontradas</p></div>
-		</div>	
+		</div>
 		</section>
 	</div>
 <%@ include file="Snippets/BooststrapJS.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#nav01').removeClass("active");
-		$('#nav02').removeClass("active");
-		$('#nav03').removeClass("active");
-		$('#nav04').addClass("active");
-		leerCondicionJSON();
+		$('#nav14').removeClass("active");
+		$('#nav15').addClass("active");
+		$('#nav16').removeClass("active");
 		//$('#example').DataTable();
 		$('#idConsultar').bootstrapValidator({
 			fields:{
 				destinatario:{
-					validators:{
-						regexp:{
-    			 			regexp:/^[A-Za-z\ñ\Á\É\Í\Ó\Ú\á\é\í\ó\ú\Ñ\s]{3,30}$/,
-    			 			message:'Solo letras | Campo de 30 caracteres'
-    			 		}
-					}
-				},
-				responsable:{
 					validators:{
 						regexp:{
     			 			regexp:/^[A-Za-z\ñ\Á\É\Í\Ó\Ú\á\é\í\ó\ú\Ñ\s]{3,30}$/,
@@ -199,27 +176,12 @@ overflow: auto;
     		 				message:'Solo números | Maximo 9999'
     			 		}
 					}
-				},
-				codigobien:{
-					validators:{
-						regexp:{
-    			 			regexp:/^[\d]{1,4}$/,
-    			 			message:'Solo números | Max:9999'
-    			 		}
-					}
 				}
 			}
 		})
 	});
 	
-	function leerCondicionJSON(){
-		$.get("ServletCondicionJSON?comboBox=UO",function(response){
-			console.log(response);
-			$.each(response,function(index,item){ 
-				$("#idUnidadorganica").append("<option value='"+item.codigo+"'>"+item.nombre+"</option>");
-			})
-		})
-	}
 </script>
+
 </body>
 </html>
