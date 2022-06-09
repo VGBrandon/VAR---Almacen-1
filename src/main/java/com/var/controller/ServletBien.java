@@ -56,7 +56,7 @@ public class ServletBien extends HttpServlet {
 			//
 			if(salida>0) {
 				//crear atributo MENSAJE
-				request.setAttribute("MENSAJE", "Proveedor eliminado...");
+				request.setAttribute("MENSAJE", "Bien eliminado...");
 				//
 				//request.getRequestDispatcher("/Proveedor.jsp").forward(request, response);
 				listarBienes(request,response);

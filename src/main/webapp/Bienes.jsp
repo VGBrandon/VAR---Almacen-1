@@ -153,6 +153,7 @@
 	        			 	}
 	        		 },    
 	        		 precio:{
+	        			 //No acepta valor 1000
 	     			 	validators:{
 	     			 		notEmpty:{
 	     			 			message:'Campo precio es obligatorio'	
